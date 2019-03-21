@@ -27,7 +27,7 @@ foreach (string depto in deptos) {
         </Query>
     </View>";
 ```
-Una vez obtenidos todos los items *.doc* o *.docx* de cada biblioteca, el proceso que realizaremos será el de conversion a PDF *On demand* (se muestra resumido en el siguiente código):
+Una vez obtenidos todos los items *.doc* o *.docx* de cada biblioteca, el proceso que realizaremos será el de conversion a pdf __*On demand*__ (se muestra resumido en el siguiente código):
 ```cs
 ConversionJobSettings jobSettings = new ConversionJobSettings();
 jobSettings.OutputFormat = SaveFormat.PDF;
@@ -61,7 +61,7 @@ SmtpServer.Send(mail);
 Console.Write("Mail enviado");
 ```
 
-De esta forma, el código completo queda de la siguiente manera
+De esta forma, el código completo queda de la siguiente manera:
 ```cs
 using System;
 using System.Collections.Generic;
@@ -87,7 +87,6 @@ namespace Test
                     var library = spSite.RootWeb.Lists.TryGetList(depto);
                     SPQuery query = new SPQuery();
                     query.Folder = library.RootFolder;
-                    //Include all subfolders so include Recursive Scope.
                     query.ViewXml = @"<View Scope='Recursive'>
                         <Query>
                             <Where>
@@ -104,7 +103,6 @@ namespace Test
                             </Where>
                         </Query>
                     </View>";
-                    //Obtaining files from query result
                     SPListItemCollection listItems = library.GetItems(query);
                     if (listItems.Count > 0)
                     {
